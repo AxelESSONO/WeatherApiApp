@@ -10,7 +10,7 @@ Pour coder cette mini application, on aura les stacks suivants :
 
 3- Retrofit2
 
-4- ViewBinding
+4- DataBing
 
 5- Coroutine
 
