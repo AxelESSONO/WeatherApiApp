@@ -5,31 +5,31 @@ import com.google.gson.annotations.SerializedName
 
 data class Daily(
     @SerializedName("clouds")
-    var clouds: Int?,
+    var clouds: Double?,
     @SerializedName("dew_point")
     var dewPoint: Double?,
     @SerializedName("dt")
-    var dt: Int?,
+    var dt: Double?,
     @SerializedName("feels_like")
     var feelsLike: FeelsLike?,
     @SerializedName("humidity")
-    var humidity: Int?,
+    var humidity: Double?,
     @SerializedName("moon_phase")
     var moonPhase: Double?,
     @SerializedName("moonrise")
-    var moonrise: Int?,
+    var moonrise: Double?,
     @SerializedName("moonset")
-    var moonset: Int?,
+    var moonset: Double?,
     @SerializedName("pop")
-    var pop: Int?,
+    var pop: Double?,
     @SerializedName("pressure")
-    var pressure: Int?,
+    var pressure: Double?,
     @SerializedName("rain")
     var rain: Double?,
     @SerializedName("sunrise")
-    var sunrise: Int?,
+    var sunrise: Double?,
     @SerializedName("sunset")
-    var sunset: Int?,
+    var sunset: Double?,
     @SerializedName("temp")
     var temp: Temp?,
     @SerializedName("uvi")
@@ -37,7 +37,7 @@ data class Daily(
     @SerializedName("weather")
     var weather: List<Weather>?,
     @SerializedName("wind_deg")
-    var windDeg: Int?,
+    var windDeg: Double?,
     @SerializedName("wind_gust")
     var windGust: Double?,
     @SerializedName("wind_speed")

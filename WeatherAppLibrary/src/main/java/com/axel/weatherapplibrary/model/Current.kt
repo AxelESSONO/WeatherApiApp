@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Current(
     @SerializedName("clouds")
-    var clouds: Int?,
+    var clouds: Double?,
+
     @SerializedName("dew_point")
     var dewPoint: Double?,
     @SerializedName("dt")
@@ -13,23 +14,23 @@ data class Current(
     @SerializedName("feels_like")
     var feelsLike: Double?,
     @SerializedName("humidity")
-    var humidity: Int?,
+    var humidity: Double?,
     @SerializedName("pressure")
-    var pressure: Int?,
+    var pressure: Double?,
     @SerializedName("sunrise")
-    var sunrise: Int?,
+    var sunrise: Double?,
     @SerializedName("sunset")
-    var sunset: Int?,
+    var sunset: Double?,
     @SerializedName("temp")
     var temp: Double?,
     @SerializedName("uvi")
-    var uvi: Int?,
+    var uvi: Double?,
     @SerializedName("visibility")
-    var visibility: Int?,
+    var visibility: Double?,
     @SerializedName("weather")
     var weather: List<Weather?>?,
     @SerializedName("wind_deg")
-    var windDeg: Int?,
+    var windDeg: Double?,
     @SerializedName("wind_speed")
     var windSpeed: Double?
 )

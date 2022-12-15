@@ -1,6 +1,7 @@
 package com.axel.weatherapplibrary.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -37,7 +38,7 @@ constructor(private val weatherRepository: WeatherRepository) : ViewModel(){
             if (response.isSuccessful){
                 _response.postValue(response.body())
             }else{
-                Log.d("WEATHER", "Error Response : ${response.message()}")
+                Log.d("WEATHER", "Error Response Axel : ${response.message()}")
             }
         }
     }

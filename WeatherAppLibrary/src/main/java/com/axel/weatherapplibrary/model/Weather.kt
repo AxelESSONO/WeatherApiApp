@@ -9,7 +9,7 @@ data class Weather(
     @SerializedName("icon")
     var icon: String?,
     @SerializedName("id")
-    var id: Int?,
+    var id: Double?,
     @SerializedName("main")
     var main: String?
 )

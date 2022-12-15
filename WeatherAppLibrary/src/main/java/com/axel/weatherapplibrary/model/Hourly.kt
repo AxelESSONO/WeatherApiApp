@@ -5,29 +5,29 @@ import com.google.gson.annotations.SerializedName
 
 data class Hourly(
     @SerializedName("clouds")
-    var clouds: Int?,
+    var clouds: Double?,
     @SerializedName("dew_point")
     var dewPoint: Double?,
     @SerializedName("dt")
-    var dt: Int?,
+    var dt: Double?,
     @SerializedName("feels_like")
     var feelsLike: Double?,
     @SerializedName("humidity")
-    var humidity: Int?,
+    var humidity: Double?,
     @SerializedName("pop")
-    var pop: Int?,
+    var pop: Double?,
     @SerializedName("pressure")
-    var pressure: Int?,
+    var pressure: Double?,
     @SerializedName("temp")
     var temp: Double?,
     @SerializedName("uvi")
     var uvi: Double?,
     @SerializedName("visibility")
-    var visibility: Int?,
+    var visibility: Double?,
     @SerializedName("weather")
     var weather: List<Weather>?,
     @SerializedName("wind_deg")
-    var windDeg: Int?,
+    var windDeg: Double?,
     @SerializedName("wind_gust")
     var windGust: Double?,
     @SerializedName("wind_speed")

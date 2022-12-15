@@ -17,5 +17,5 @@ data class WeatherRoot(
     @SerializedName("timezone")
     var timezone: String?,
     @SerializedName("timezone_offset")
-    var timezoneOffset: Int?
+    var timezoneOffset: Double?
 )
