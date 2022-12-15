@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.axel.weatherapplibrary.model.WeatherRoot
 import com.axel.weatherapplibrary.repository.WeatherRepository
+import com.axel.weatherapplibrary.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,11 +21,19 @@ constructor(private val weatherRepository: WeatherRepository) : ViewModel(){
         get() = _response
 
     init {
-        getWeather()
+        getWeather(
+            latitude  = Constants.DEFAULT_LAT,
+            longitude  = Constants.DEFAULT_LON,)
     }
 
-    private fun getWeather() = viewModelScope.launch {
-        weatherRepository.getWeather().let { response ->
+    private fun getWeather(
+        latitude : Double,
+        longitude : Double
+    ) = viewModelScope.launch {
+        weatherRepository.getWeather(
+            latitude  = latitude,
+            longitude  = longitude,
+        ).let { response ->
             if (response.isSuccessful){
                 _response.postValue(response.body())
             }else{

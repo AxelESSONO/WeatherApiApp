@@ -10,8 +10,8 @@ class WeatherRepository
 constructor(private val weatherApiService: WeatherApiService)
 {
     suspend fun getWeather(
-        latitude : Double = Constants.DEFAULT_LAT,
-        longitude : Double = Constants.DEFAULT_LON,
+        latitude : Double,
+        longitude : Double,
         apiKey : String = BuildConfig.WEATHER_API_KEY
     ) = weatherApiService.getWeather(latitude, longitude, apiKey)
 }
