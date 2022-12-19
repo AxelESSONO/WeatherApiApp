@@ -11,7 +11,8 @@ interface WeatherApiService {
     suspend fun getWeather(
         @Query("lat") latitude : Double,
         @Query("lon") longitude : Double,
-        @Query("appid") apiKey : String
+        @Query("appid") apiKey : String,
+        @Query("units") units : String = "metric"
     ) : Response<WeatherRoot>
 
 }
