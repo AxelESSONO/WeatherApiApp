@@ -37,7 +37,7 @@ class UnixTimeUtils() {
         return when(formatDate){
             FormatDate.DAY_DAY_NUM_MONTH_YEAR -> time.format(DateTimeFormatter.ofPattern("dd:MM:yyyy"))
             FormatDate.HOUR_MIN -> time.format(DateTimeFormatter.ofPattern("HH:mm"))
-            FormatDate.HOUR_MIN_DAY_DAY_NUM_MONTH_YEAR -> time.format(DateTimeFormatter.ofPattern("dd:MM:yyyy"))
+            FormatDate.HOUR_MIN_DAY_DAY_NUM_MONTH_YEAR -> time.format(DateTimeFormatter.ofPattern("HH:mm - dd:MM:yyyy"))
         }
     }
 

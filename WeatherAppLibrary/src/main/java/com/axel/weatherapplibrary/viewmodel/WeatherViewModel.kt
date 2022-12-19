@@ -15,13 +15,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(private val weatherRepository: WeatherRepository) : ViewModel(){
+
     private val _response = MutableLiveData<WeatherRoot>()
     val weatherResponse : LiveData<WeatherRoot>
         get() = _response
 
-    init {
+    /*init {
         getWeather(latitude  = Constants.DEFAULT_LAT, longitude  = Constants.DEFAULT_LON)
-    }
+    }*/
 
     private fun getWeather(latitude : Double, longitude : Double) = viewModelScope.launch {
         weatherRepository.getWeather(latitude  = latitude, longitude  = longitude).let { response ->

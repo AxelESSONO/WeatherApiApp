@@ -11,8 +11,8 @@ interface WeatherApiService {
 
     @GET("onecall")
     suspend fun getWeather(
-        @Query("lat") latitude : Double = Constants.DEFAULT_LAT,
-        @Query("lon") longitude : Double =  Constants.DEFAULT_LON,
+        @Query("lat") latitude : Double,
+        @Query("lon") longitude : Double,
         @Query("appid") apiKey : String = BuildConfig.WEATHER_API_KEY,
         @Query("units") units : String = "metric"
     ) : Response<WeatherRoot>
