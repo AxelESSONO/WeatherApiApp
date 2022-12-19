@@ -14,27 +14,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WeatherViewModel
-@Inject
-constructor(private val weatherRepository: WeatherRepository) : ViewModel(){
+class WeatherViewModel @Inject constructor(private val weatherRepository: WeatherRepository) : ViewModel(){
     private val _response = MutableLiveData<WeatherRoot>()
     val weatherResponse : LiveData<WeatherRoot>
         get() = _response
 
     init {
-        getWeather(
-            latitude  = Constants.DEFAULT_LAT,
-            longitude  = Constants.DEFAULT_LON,)
+        getWeather(latitude  = Constants.DEFAULT_LAT, longitude  = Constants.DEFAULT_LON)
     }
 
-    private fun getWeather(
-        latitude : Double,
-        longitude : Double
-    ) = viewModelScope.launch {
-        weatherRepository.getWeather(
-            latitude  = latitude,
-            longitude  = longitude,
-        ).let { response ->
+    private fun getWeather(latitude : Double, longitude : Double) = viewModelScope.launch {
+        weatherRepository.getWeather(latitude  = latitude, longitude  = longitude).let { response ->
             if (response.isSuccessful){
                 _response.postValue(response.body())
             }else{
@@ -42,4 +32,10 @@ constructor(private val weatherRepository: WeatherRepository) : ViewModel(){
             }
         }
     }
+
+    fun setWeather(latitude : Double, longitude : Double) : LiveData<WeatherRoot> {
+        getWeather(latitude, longitude)
+        return weatherResponse
+    }
+
 }

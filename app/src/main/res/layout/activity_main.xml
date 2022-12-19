@@ -33,6 +33,10 @@
             name="sunset"
             type="String" />
 
+        <variable
+            name="cityName"
+            type="String" />
+
     </data>
 
     <RelativeLayout
@@ -68,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="@{weatherRoot.timezone}"
+                android:text="@{cityName}"
                 android:textColor="@color/white"
                 android:textSize="25sp"/>
 
