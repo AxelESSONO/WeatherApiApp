@@ -1,14 +1,13 @@
 package com.axel.weatherapiapp.view.fragment
 
+import android.content.DialogInterface
 import android.location.Geocoder
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +15,7 @@ import com.axel.weatherapiapp.R
 import com.axel.weatherapiapp.databinding.FragmentAddCityDialogBinding
 import com.axel.weatherapplibrary.model.CityWeather
 import com.axel.weatherapplibrary.viewmodel.WeatherViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class AddCityDialogFragment : DialogFragment() {
@@ -65,26 +65,19 @@ class AddCityDialogFragment : DialogFragment() {
                             )
                         )
                     }
-                    Log.d(
-                        "AXELCEDRIC",
-                        "lati : ${address.latitude} \nlongi : ${address.longitude} \nCity : ${address.locality}"
-                    )
                 }
             }
             dismiss()
-            val thread = Thread{
-                cities = weatherViewModel.getAll(requireContext())
-                activity?.runOnUiThread {
-                    Log.d(
-                        "AXELCEDRIC_ALL",
-                        "latitude : ${cities?.get(0)?.lat} \nlongitude : ${cities?.get(0)?.lon} \nCityName : ${cities?.get(0)?.name}"
-                    )
-                }
-            }.start()
-            Toast.makeText(requireContext(), "${address?.locality} was saved successfully", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root,"${address?.locality} was saved successfully", Snackbar.LENGTH_SHORT).show()
         }
         return binding.root
     }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         weatherViewModel = ViewModelProvider(requireActivity())[WeatherViewModel::class.java]

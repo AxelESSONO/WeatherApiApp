@@ -39,6 +39,10 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
         return weatherResponse
     }
 
+    fun retreiveWeather(latitude : Double, longitude : Double){
+
+    }
+
      fun addCity(context: Context, weather: CityWeather){
         val thread = Thread{
             val dao : CityWeatherDao  = CityWeatherDatabase.getDataBase(context).cityWeatherDao()
@@ -47,7 +51,7 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
         }.start()
     }
 
-     fun getAll(context: Context) : List<CityWeather>? {
+     fun getAll(context: Context) : MutableList<CityWeather>? {
             CityWeatherDatabase.getDataBase(context).cityWeatherDao().getAll()
             val dao : CityWeatherDao  = CityWeatherDatabase.getDataBase(context).cityWeatherDao()
             val cityWeatherRepository = CityWeatherRepository(dao)
@@ -63,9 +67,5 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
              cityWeatherRepository.delete(weather)
 
          }.start()
-
-        //val db = CityWeatherDatabase.getDataBase(context).cityWeatherDao().getAll()
-
-
     }
 }

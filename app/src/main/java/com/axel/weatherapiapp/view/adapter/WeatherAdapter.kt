@@ -12,15 +12,13 @@ import com.axel.weatherapiapp.utils.FormatDate
 import com.axel.weatherapiapp.utils.UnixTimeUtils
 import com.axel.weatherapiapp.utils.fetchingIcons
 import com.axel.weatherapplibrary.model.Hourly
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
-class HourlyAdapter(var hourlyDataList: List<Hourly>?) :
-    RecyclerView.Adapter<HourlyAdapter.HourlyViewHolder>() {
+class WeatherAdapter(var hourlyDataList: List<Hourly>?) :
+    RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>() {
 
-    class HourlyViewHolder(private val binding: DailyItemBinding) :
+    class WeatherViewHolder(private val binding: DailyItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @RequiresApi(Build.VERSION_CODES.O)
@@ -28,14 +26,6 @@ class HourlyAdapter(var hourlyDataList: List<Hourly>?) :
             val unixTimeUtils: UnixTimeUtils = UnixTimeUtils()
 
             val currentDate = LocalDateTime.now()
-
-           /* val date = LocalDateTime.parse(unixTimeUtils.format(
-                pHourly?.dt?.toLong()?.let { unixTimeUtils.fromTimestamp(it) },
-                FormatDate.HOUR_MIN_DAY_DAY_NUM_MONTH_YEAR),
-                DateTimeFormatter.ofPattern("dd:MM:yyyy")
-            )*/
-
-
             val date = unixTimeUtils.format(
                 pHourly?.dt?.toLong()?.let { unixTimeUtils.fromTimestamp(it) },
                 FormatDate.HOUR_MIN_DAY_DAY_NUM_MONTH_YEAR
@@ -44,27 +34,21 @@ class HourlyAdapter(var hourlyDataList: List<Hourly>?) :
             binding.apply {
                 hourly = pHourly
                 imageUrl = fetchingIcons(pHourly?.weather?.get(0)?.icon)
-               /* dateByType = unixTimeUtils.format(
-                    pHourly?.dt?.toLong()?.let { unixTimeUtils.fromTimestamp(it) },
-                    FormatDate.HOUR_MIN_DAY_DAY_NUM_MONTH_YEAR
-                )*/
-
                 dateByType = date
-
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourlyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
         val binding: DailyItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             R.layout.daily_item, parent, false
         )
-        return HourlyViewHolder(binding)
+        return WeatherViewHolder(binding)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: HourlyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
         holder.bind(hourlyDataList?.get(position))
     }
 
