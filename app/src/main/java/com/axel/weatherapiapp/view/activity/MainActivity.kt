@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.addNewCity.setOnClickListener {
             val addCityDialogFragment = AddCityDialogFragment()
-            addCityDialogFragment.show(supportFragmentManager, "CITY_DIALOG")
+            addCityDialogFragment.show(supportFragmentManager.beginTransaction(), "CITY_DIALOG")
         }
 
     }
