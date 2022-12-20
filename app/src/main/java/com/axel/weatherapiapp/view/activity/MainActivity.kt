@@ -2,12 +2,12 @@ package com.axel.weatherapiapp.view.activity
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -53,8 +53,7 @@ class MainActivity : AppCompatActivity() {
         binding.currentDate = getCurrentDate()
 
         binding.seeCities.setOnClickListener {
-
-            Toast.makeText(applicationContext, "See all cities", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, CitiesActivity::class.java))
         }
 
         binding.addNewCity.setOnClickListener {

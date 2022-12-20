@@ -14,4 +14,6 @@
     <string name="cancel">Cancel</string>
     <string name="type_city_name">Type city name</string>
     <string name="add_city">Add City</string>
+    <string name="cities_added_previously">Cities added previously</string>
+    <string name="no_city_nsaved_yet">No city \nsaved yet</string>
 </resources>
