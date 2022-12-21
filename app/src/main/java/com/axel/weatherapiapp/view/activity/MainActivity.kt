@@ -65,9 +65,7 @@ class MainActivity : AppCompatActivity() {
         binding.addNewCity.setOnClickListener {
             val addCityDialogFragment = AddCityDialogFragment()
             addCityDialogFragment.show(supportFragmentManager.beginTransaction(), "CITY_DIALOG")
-            Toast.makeText(applicationContext, "C'est fini", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun requestPermissions() {
@@ -137,15 +135,6 @@ class MainActivity : AppCompatActivity() {
                 )
 
                 hourlyRecyclerView.apply {
-                    adapter = WeatherAdapter(weatherResponse.hourly)
-                    layoutManager = LinearLayoutManager(
-                        applicationContext,
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    )
-                }
-
-                dailyRecyclerView.apply {
                     adapter = WeatherAdapter(weatherResponse.hourly)
                     layoutManager = LinearLayoutManager(
                         applicationContext,

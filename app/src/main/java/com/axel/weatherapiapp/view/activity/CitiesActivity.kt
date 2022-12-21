@@ -39,6 +39,7 @@ class CitiesActivity : AppCompatActivity() {
                             cities!!.remove(it)
                             weatherViewModel.deleteCity(applicationContext, it)
                             binding.cityRecycler.adapter?.notifyItemRemoved(getPosition(it))
+                            binding.noCitySavedYet.visibility = if (cities?.isEmpty() == true) View.VISIBLE else View.GONE
                             Snackbar.make(binding.root,"${it.name} was deleted", Snackbar.LENGTH_SHORT).show()
                         }
                     }

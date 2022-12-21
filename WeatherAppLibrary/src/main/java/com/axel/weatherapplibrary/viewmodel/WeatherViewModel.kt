@@ -39,10 +39,6 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
         return weatherResponse
     }
 
-    fun retreiveWeather(latitude : Double, longitude : Double){
-
-    }
-
      fun addCity(context: Context, weather: CityWeather){
         val thread = Thread{
             val dao : CityWeatherDao  = CityWeatherDatabase.getDataBase(context).cityWeatherDao()
