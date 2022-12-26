@@ -10,12 +10,12 @@ import com.axel.weatherapplibrary.model.CityWeather
 interface CityWeatherDao {
 
     @Insert
-    fun insertCity(cityWeather: CityWeather)
+    suspend fun insertCity(cityWeather: CityWeather)
 
     @Query("SELECT * FROM city")
-    fun getAll(): MutableList<CityWeather>
+    suspend fun getAll(): MutableList<CityWeather>
 
     @Delete
-    fun delete(user: CityWeather)
+    suspend fun delete(user: CityWeather)
 
 }
