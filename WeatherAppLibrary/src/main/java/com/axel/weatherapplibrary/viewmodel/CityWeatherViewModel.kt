@@ -12,15 +12,15 @@ import javax.inject.Inject
 @HiltViewModel
 class CityWeatherViewModel @Inject constructor(private val cityWeatherRepository: CityWeatherRepository) : ViewModel() {
 
-    fun addCity(context: Context, cityWeather: CityWeather) = viewModelScope.launch {
+    fun addCity(cityWeather: CityWeather) = viewModelScope.launch {
         cityWeatherRepository.insertCity(cityWeather)
     }
 
-    suspend fun getAll(context: Context) : MutableList<CityWeather>? {
+    suspend fun getAll() : MutableList<CityWeather>? {
         return cityWeatherRepository.getAllCity()
     }
 
-    fun deleteCity(context: Context, cityWeather: CityWeather) = viewModelScope.launch {
+    fun deleteCity(cityWeather: CityWeather) = viewModelScope.launch {
         cityWeatherRepository.delete(cityWeather)
     }
 }
