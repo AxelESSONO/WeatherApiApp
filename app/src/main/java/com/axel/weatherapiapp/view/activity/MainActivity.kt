@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 cityName = cityName
 
                 current = myCurrent
-                val unixTimeUtils: UnixTimeUtils = UnixTimeUtils()
+                val unixTimeUtils = UnixTimeUtils()
                 sunrise = unixTimeUtils.format(
                     weatherResponse.current?.sunrise?.let { unixTimeUtils.fromTimestamp(it.toLong()) },
                     FormatDate.HOUR_MIN

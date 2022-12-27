@@ -5,6 +5,7 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.axel.weatherapiapp.R
 import com.axel.weatherapiapp.databinding.FragmentAddCityDialogBinding
 import com.axel.weatherapplibrary.model.CityWeather
+import com.axel.weatherapplibrary.viewmodel.CityWeatherViewModel
 import com.axel.weatherapplibrary.viewmodel.WeatherViewModel
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -22,7 +24,7 @@ class AddCityDialogFragment : DialogFragment() {
 
     private lateinit var binding: FragmentAddCityDialogBinding
     private lateinit var weatherViewModel: WeatherViewModel
-    private  var cities: List<CityWeather>? = null
+    private lateinit var cityWeatherViewModel: CityWeatherViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,41 +47,45 @@ class AddCityDialogFragment : DialogFragment() {
 
         binding.addButton.setOnClickListener {
 
-            val city: String = binding.cityNameInput.text.toString()
+            val city: String = binding.cityNameInput.text.toString().trim()
             val geocoder: Geocoder = Geocoder(requireContext(), Locale.getDefault())
             val addresses = geocoder.getFromLocationName(city, 2)
             val address = addresses?.get(0)
 
-            address?.longitude?.let { it1 ->
-                address.latitude.let { it2 ->
-                    weatherViewModel.setWeather(it2, it1).observe(this) { weatherResponse ->
-                        weatherViewModel.addCity(
-                            requireContext(),
-                            CityWeather(
-                                0,
-                                address.locality,
-                                address.latitude,
-                                address.longitude,
-                                weatherResponse.current?.temp,
-                                weatherResponse.current?.weather?.get(0)?.icon
-                            )
-                        )
-                    }
-                }
+            var messageResponse = ""
+
+
+            if (address != null) {
+                cityWeatherViewModel.saveCity(
+                    CityWeather(
+                        0,
+                        address.locality,
+                        address.latitude,
+                        address.longitude,
+                        weatherViewModel.setWeather(address.latitude, address.longitude).value?.current?.temp,
+                        weatherViewModel.setWeather(address.latitude, address.longitude).value?.current?.weather?.get(0)?.icon
+                    )
+                )
+                Log.d("NDZOGOMVE", "City : ${address.locality} lati : ${address.latitude} long : ${address.longitude}")
+                messageResponse = "${address.locality} was saved successfully"
+            }else{
+                messageResponse = "Failed to save this city"
             }
+
             dismiss()
-            Snackbar.make(binding.root,"${address?.locality} was saved successfully", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root,messageResponse, Snackbar.LENGTH_SHORT).show()
         }
         return binding.root
     }
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         weatherViewModel = ViewModelProvider(requireActivity())[WeatherViewModel::class.java]
+        cityWeatherViewModel = ViewModelProvider(requireActivity())[CityWeatherViewModel::class.java]
     }
 }

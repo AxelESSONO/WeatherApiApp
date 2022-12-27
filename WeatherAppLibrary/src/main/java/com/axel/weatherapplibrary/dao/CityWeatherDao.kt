@@ -1,10 +1,12 @@
 package com.axel.weatherapplibrary.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.axel.weatherapplibrary.model.CityWeather
+import dagger.Provides
 
 @Dao
 interface CityWeatherDao {
@@ -13,7 +15,7 @@ interface CityWeatherDao {
     suspend fun insertCity(cityWeather: CityWeather)
 
     @Query("SELECT * FROM city")
-    suspend fun getAll(): MutableList<CityWeather>
+    fun getAll(): LiveData<MutableList<CityWeather>>
 
     @Delete
     suspend fun delete(user: CityWeather)

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.axel.weatherapplibrary.dao.CityWeatherDao
 import com.axel.weatherapplibrary.model.CityWeather
 
-@Database(entities = [CityWeather::class], version = 1)
+@Database(entities = [CityWeather::class], version = 1, exportSchema = false)
 abstract class CityWeatherDatabase : RoomDatabase() {
     abstract fun cityWeatherDao(): CityWeatherDao
 

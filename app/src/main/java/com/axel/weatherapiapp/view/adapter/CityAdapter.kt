@@ -14,12 +14,8 @@ import com.axel.weatherapplibrary.model.CityWeather
 import com.axel.weatherapplibrary.viewmodel.WeatherViewModel
 
 class CityAdapter(
-    private val context : AppCompatActivity,
-    private var weatherViewModel: WeatherViewModel,
     private var cities: List<CityWeather>,
-    var listener : (CityWeather) ->  Unit
-) :
-    RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
+    private var listener : (CityWeather) ->  Unit) : RecyclerView.Adapter<CityAdapter.CityViewHolder>() {
 
     inner class CityViewHolder(private val binding: CityItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -29,14 +25,7 @@ class CityAdapter(
             binding.apply {
                 weatherCity = pCityWeather
                 imageUrl = fetchingIcons(pCityWeather.icon)
-
-                deleteCity.setOnClickListener {
-                    /*weatherViewModel.deleteCity(context, pCityWeather)
-                    cities.drop(adapterPosition)
-                    notifyDataSetChanged()
-                    Snackbar.make(binding.root,"Device'location was permitted", Snackbar.LENGTH_SHORT).show()*/
-                    listener(pCityWeather)
-                }
+                deleteCity.setOnClickListener { listener(pCityWeather) }
             }
         }
     }
@@ -48,7 +37,6 @@ class CityAdapter(
                 R.layout.city_item, parent, false
             )
         )
-
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
         holder.bingView(cities[position], listener)
