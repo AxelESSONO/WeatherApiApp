@@ -26,19 +26,6 @@ class CityWeatherViewModel @Inject constructor(private val cityWeatherRepository
         cityWeatherRepository.insertCity(cityWeather)
     }
 
-   /* private fun getAll() = viewModelScope.launch {
-         cityWeatherRepository.getAllCity().let { cityWeathers ->
-             if (cityWeathers.size > 0){
-                 Log.d("NDZOGOMVE", "there are some data")
-                 for (weather in cityWeathers){
-                     Log.d("NDZOGOMVE", "Name : ${weather.name}, Lat : ${weather.lat}, Long : ${weather.lon}")
-                 }
-             }else{
-                 Log.d("NDZOGOMVE", "No data in database")
-             }
-         }
-    }*/
-
     fun deleteCity(cityWeather: CityWeather) = viewModelScope.launch {
         cityWeatherRepository.delete(cityWeather)
     }
@@ -48,8 +35,4 @@ class CityWeatherViewModel @Inject constructor(private val cityWeatherRepository
         return cityResponse
     }
 
-   /* fun getAllCities() : LiveData<MutableList<CityWeather>> {
-        getAll()
-        return citiesResponse
-    }*/
 }
